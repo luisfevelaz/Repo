@@ -1,0 +1,106 @@
+header{
+    --opacidad-negro: 0.4;
+    background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("src\assets\img\backgroundOrigin.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+}
+
+.banner-text{
+    padding-top: 180px;
+    text-align: center;
+}
+
+.banner-text p{
+    color: white;
+}
+
+.banner-btn a{
+    border: 1px solid white;
+    border-radius: 50px;
+    text-decoration: none;
+    padding: 10px 50px;
+    color: white;
+    display: inline-block;
+    margin-top: 5px;
+    transition: all .6s;
+}
+
+.banner-btn a:hover{
+    border: 1px solid yellow;
+    background: yellow;
+    color: black;
+}
+
+.text-area{
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.text-area span{
+    color: yellow;
+    opacity: 0;
+    transform: translate(0,-100px) rotate(360deg) scale(0);
+    animation: animate 5s forwards;
+}
+
+.text-area span{
+    display: inline-block;
+}
+
+.text-area span:nth-of-type(2){
+    animation-delay: .1s;
+}
+
+.text-area span:nth-of-type(3){
+    animation-delay: .2s;
+}
+
+.text-area span:nth-of-type(4){
+    animation-delay: .3s;
+}
+
+.text-area span:nth-of-type(5){
+    animation-delay: .4s;
+}
+
+.text-area span:nth-of-type(6){
+    animation-delay: .5s;
+}
+
+.text-area span:nth-of-type(7){
+    animation-delay: .6s;
+}
+
+.text-area span:nth-of-type(8){
+    animation-delay: .7s;
+}
+
+.text-area span:nth-of-type(9){
+    animation-delay: .8s;
+}
+
+.text-area span:nth-of-type(10){
+    animation-delay: .9s;
+}
+
+.text-area span:nth-of-type(11){
+    animation-delay: .10s;
+}
+
+@keyframes animate{
+    30%{
+        transform: translate(0, -50px) rotate(180deg) scale(1); 
+    }
+    60%{
+        transform: translate(0, -20px) rotate(0deg) scale(0.8);
+    }
+    100%{
+        transform: translate(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* @media screen (){
+    
+} */

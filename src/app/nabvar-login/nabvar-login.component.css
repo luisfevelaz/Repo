@@ -1,0 +1,7 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(38 38 32 / 61%);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: whitesmoke;
+}
