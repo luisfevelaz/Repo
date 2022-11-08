@@ -1,10 +1,9 @@
-header{
+.welcome{
     --opacidad-negro: 0.4;
     background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("src\assets\img\backgroundOrigin.jpg");
     height: 100vh;
     background-size: cover;
     background-position: center center;
-    max-height: 1000px;
 }
 
 .banner-text{
@@ -102,6 +101,6 @@ header{
     }
 }
 
-/* @media screen (){
+/* @media (min-height: 700px){
     
-} */
+}  */
