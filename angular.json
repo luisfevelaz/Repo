@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Repo"
+    }
+  },
+  "defaultProject": "Repo",
+  "cli": {
+    "analytics": "2d629b91-ca8d-4c16-aec4-745e30eab0c8"
+  }
 }
