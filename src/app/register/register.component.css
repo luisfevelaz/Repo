@@ -20,5 +20,11 @@
 
     #login-form .container-form{
         border-radius: 20px;
+        width: 95%;
+        height: auto;
     }
 }  
+.contb{
+    background-color: #0D141C;
+    width: 100%;
+}

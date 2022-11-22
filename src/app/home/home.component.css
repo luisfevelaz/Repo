@@ -100,7 +100,12 @@
         opacity: 1;
     }
 }
-
+@media screen and (max-width: 650px) {
+    .text-area{
+        font-size: 40px;
+        font-weight: 700;
+    }
+  }
 /* @media (min-height: 700px){
     
 }  */

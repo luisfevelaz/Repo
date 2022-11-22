@@ -12,6 +12,7 @@
   }
 }
 
+
 .b-example-divider {
   height: 3rem;
   background-color: rgba(0, 0, 0, .1);
@@ -52,6 +53,6 @@
   background-color: #969841;
 }
 .ic2{
-  height: 20%;
-  width: auto;
+  height: auto;
+  width: 14%;
 }

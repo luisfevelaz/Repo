@@ -5,3 +5,18 @@
 .navbar-dark .navbar-nav .nav-link:hover {
     color: whitesmoke;
 }
+.logo11{
+    width: 41%;
+    height: auto;
+}
+.ena{
+    display: none;
+}
+@media screen and (max-width: 650px) {
+    .disa {
+      display: none;
+    }
+    .ena{
+        display: block;
+    }
+  }
