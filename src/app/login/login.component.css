@@ -4,6 +4,7 @@
     /* Edge, Firefox, Chrome, Opera, Safari */
     background: linear-gradient(to right, #4B5320, #3C4411, #2D3502, #5A622F);
     border: none;
+    height: fit-content;
 }
 
 #login-form .rigth-img{

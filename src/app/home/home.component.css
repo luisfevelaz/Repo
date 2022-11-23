@@ -1,4 +1,4 @@
-header{
+.welcome{
     --opacidad-negro: 0.4;
     background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("src\assets\img\backgroundOrigin.jpg");
     height: 100vh;
@@ -100,7 +100,12 @@ header{
         opacity: 1;
     }
 }
-
-/* @media screen (){
+@media screen and (max-width: 650px) {
+    .text-area{
+        font-size: 40px;
+        font-weight: 700;
+    }
+  }
+/* @media (min-height: 700px){
     
-} */
+}  */
