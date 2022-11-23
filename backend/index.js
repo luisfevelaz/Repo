@@ -102,7 +102,7 @@ app.delete('/documento',async(req,res) => {
 
 app.post('/login', async(req, res) => {
   try {
-      connection.query(`SELECT username where username = ${req.body.username} and contra = ${req.body.password};`,(error,results,fields) =>{
+      connection.query(`SELECT username FROM usuario where username = ${req.body.username} and contra = ${req.body.password};`,(error,results,fields) =>{
         if(error){
           console.log(error);
         }else{
@@ -115,6 +115,26 @@ app.post('/login', async(req, res) => {
       console.log(error);
   }
 })
+
+app.post('/user', async(req,res) => {
+  try{
+    connection.query(`INSERT INTO usuario (nombre,apellido_p,apellido_m,is_admin,username,contra)
+    values(${req.body.username},${req.body.apellidoP},${req.body.apellidoM},${req.body.isAdmin},${req.body.username},${req.body.password});`,
+    (error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        if(results.length > 0){
+          res.json({"response": 200, "result": "User registered successfuly"});
+        }else{
+          res.json({"response": 200, "result": "The user could not be registered"});
+        }
+      }
+    });
+  }catch (error) {
+      console.log(error);
+  }
+});
 
 
 connection.connect();
