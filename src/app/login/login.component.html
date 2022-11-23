@@ -13,15 +13,15 @@
                     <h4 class="mt-1 mb-5 pb-1">¡Inicia sesión con nosotros!</h4>
                   </div>
                   <!-- Form -->
-                  <form>
+                  <form [formGroup]}="login" (ngSubmit)="enviarLogin()">
                     <div class="form-outline mb-4">
                       <label class="form-label text-secondary" for="email">Correo</label>
-                      <input type="email" id="email" class="form-control" />
+                      <input type="email" id="email" class="form-control" formControlName="email"/>
                     </div>
   
                     <div class="form-outline mb-4">
                       <label class="form-label text-secondary" for="password">Contraseña</label>
-                      <input type="password" id="password" class="form-control" />
+                      <input type="password" id="password" class="form-control" formControlName="password"/>
                     </div>
   
                     <div class="text-center pt-1 mb-5 pb-1">
