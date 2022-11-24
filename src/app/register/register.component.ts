@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SolicitudesService } from '../solicitudes.service';
+
 
 @Component({
   selector: 'app-register',
