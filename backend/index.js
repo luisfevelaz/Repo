@@ -1,5 +1,6 @@
 const { query } = require('express');
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 
 var mysql      = require('mysql');
@@ -12,6 +13,29 @@ var connection = mysql.createConnection({
 });
 
 const puerto = 3000;
+
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 app.listen(puerto,()=>{
     console.log("Servidor corriendo en el puerto ",puerto);
@@ -102,12 +126,16 @@ app.delete('/documento',async(req,res) => {
 
 app.post('/login', async(req, res) => {
   try {
-      connection.query(`SELECT username FROM usuario where username = ${req.body.username} and contra = ${req.body.password};`,(error,results,fields) =>{
+      connection.query(`SELECT username FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
         if(error){
           console.log(error);
         }else{
+          console.log(results);
           if(results.length > 0){
-            res.json({"response": 200,"result": "Successful login"});
+            console.log(results);
+            res.json({"response": 200, "result": "User registered successfuly"});
+          }else{
+            res.json({"response": 500,"result": "The user/password is wrong"});
           }
         }
       });
@@ -119,15 +147,15 @@ app.post('/login', async(req, res) => {
 app.post('/user', async(req,res) => {
   try{
     connection.query(`INSERT INTO usuario (nombre,apellido_p,apellido_m,is_admin,username,contra)
-    values(${req.body.username},${req.body.apellidoP},${req.body.apellidoM},${req.body.isAdmin},${req.body.username},${req.body.password});`,
+    values("${req.body.nombre}",${req.body.apellidoP},${req.body.apellidoM},${req.body.isAdmin},"${req.body.username}","${req.body.password}");`,
     (error,results,fields) =>{
       if(error){
         console.log(error);
       }else{
         if(results.length > 0){
-          res.json({"response": 200, "result": "User registered successfuly"});
+          res.json({"response": 500, "result": "the user could not be registered"});
         }else{
-          res.json({"response": 200, "result": "The user could not be registered"});
+          res.json({"response": 200, "result": "User registered successfuly"});
         }
       }
     });

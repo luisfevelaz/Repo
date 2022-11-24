@@ -13,7 +13,7 @@
                     <h4 class="mt-1 mb-5 pb-1">¡Registrate!</h4>
                   </div>
                   <!-- Form -->
-                  <form [formGroup]="registro" (ngSubmit)="enviarRegistro()">
+                  <form [formGroup]="registro" #userRegistro="ngForm" (ngSubmit)="enviarRegistro(userRegistro.value)">
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="user">Nombre de usuario</label>
                       <input type="text" id="user" class="form-control" formControlName="nombre"/>
