@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   
   url='http://192.168.100.6:3000/login'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,11 @@ export class LoginComponent implements OnInit {
 
     this.http.post(this.url,body,{responseType: 'text'}).subscribe((result) => {
       console.log(result);
+      let resp = JSON.parse(result);
+
+      if(resp.response == 200){
+        this._router.navigateByUrl('/home');
+      }
       
     });
     
