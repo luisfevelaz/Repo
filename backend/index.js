@@ -1,5 +1,5 @@
-const AWS_ACCESS_KEY ='AKIAXTJR7ARIU2HS2ZFH';
-const AWS_SECRET_ACCESS_KEY='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';
+const AWS_ACCESS_KEY ='';
+const AWS_SECRET_ACCESS_KEY='';
 
 
 const fs = require('fs');
@@ -158,14 +158,14 @@ app.delete('/documento',async(req,res) => {
 
 app.post('/login', async(req, res) => {
   try {
-      connection.query(`SELECT username FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
+      connection.query(`SELECT id,username FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
         if(error){
           console.log(error);
         }else{
           console.log(results);
           if(results.length > 0){
-            console.log(results);
-            res.json({"response": 200, "result": "User registered successfuly"});
+            // console.log(results[0].id);
+            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id});
           }else{
             res.json({"response": 500,"result": "The user/password is wrong"});
           }
@@ -194,6 +194,10 @@ app.post('/user', async(req,res) => {
   }catch (error) {
       console.log(error);
   }
+});
+
+app.get('/user',async(req,res)=>{
+
 });
 
 
