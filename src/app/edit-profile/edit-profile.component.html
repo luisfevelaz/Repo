@@ -1,5 +1,5 @@
 <app-nabvar-login></app-nabvar-login>
-<section class="gradient-form" id="login-form">
+<section id="edit-profile-form">
     <div class="container py-5">
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-10 ">
@@ -10,37 +10,36 @@
                 <div class="p-md-5 mx-md-4">
                   <div class="text-center">
                     <img src="assets/img/LogoRepo2NF.png"  alt="PipeRepo_logo">
-                    <h4 class="mt-1 mb-5 pb-1">¡Inicia sesión con nosotros!</h4>
+                    <h4 class="mt-1 mb-5 pb-1">Edita tu perfil</h4>
                   </div>
                   <!-- Form -->
                   <form>
-                    <div class="form-outline mb-4">
-                      <label class="form-label text-secondary" for="email">Correo</label>
+                    <div class="form-outline mb-2">
+                      <label class="form-label text-secondary" for="user">Nuevo nombre de usuario</label>
+                      <input type="text" id="user" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-2">
+                      <label class="form-label text-secondary" for="email">Nuevo correo</label>
                       <input type="email" id="email" class="form-control" />
                     </div>
   
-                    <div class="form-outline mb-4">
-                      <label class="form-label text-secondary" for="password">Contraseña</label>
+                    <div class="form-outline mb-2">
+                      <label class="form-label text-secondary" for="password">Nueva contraseña</label>
                       <input type="password" id="password" class="form-control" />
                     </div>
   
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Iniciar sesión</button>
-                      <a class="text-muted" href="#!">Olvide mi contraseña</a>
-                    </div>
-                    <div class="row align-items-center justify-content-center pb-2">
-                      <p class="col-mb-3 mb-0 me-2 mr-2">¿No tienes cuenta?</p>
-                      <button type="button" class="ml-2 col-mb-3 btn btn-outline-secondary" routerLink="/register">Crear cuenta</button>  
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Guardar</button>
                     </div>
                   </form>
                 </div>
               </div>
               <!-- section 2 text -->
-              <div class="col-lg-6 rigth-img "></div>
+              <div class="col-lg-6 rigth-img"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  

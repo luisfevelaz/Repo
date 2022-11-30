@@ -37,8 +37,8 @@ html {
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: rgba(142, 121, 59, 0.4);
-  color: black;
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgb(224, 214, 213);
   margin: 0% !important;
 }
 
