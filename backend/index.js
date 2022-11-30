@@ -1,6 +1,13 @@
-const { query } = require('express');
-var express = require('express');
-var bodyParser = require('body-parser')
+const AWS_ACCESS_KEY ='AKIAXTJR7ARIU2HS2ZFH';
+const AWS_SECRET_ACCESS_KEY='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';
+
+
+const fs = require('fs');
+const AWS = require('aws-sdk');
+const express = require('express');
+const bodyParser = require('body-parser')
+const multipart = require('connect-multiparty');
+
 var app = express();
 
 var mysql      = require('mysql');
@@ -33,9 +40,15 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const s3 = new AWS.S3({
+  accessKeyId: AWS_ACCESS_KEY,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY
+});
+
+const multiPartMiddleware = multipart();
 
 app.listen(puerto,()=>{
     console.log("Servidor corriendo en el puerto ",puerto);
@@ -58,9 +71,28 @@ app.get('/documento', async(req, res) => {
 })
 
 app.post('/documento',async(req,res)=>{
+
+  const fileName = req.body.ruta;
+  const llave = req.body.nombre+'.pdf';
+  fs.readFile(fileName,(err,data) =>{
+    if(err){
+      throw err;
+    }
+    const params = {
+      Bucket: 'piperepo-mx',
+      Key: llave,
+      Body: JSON.stringify(data,null,2)
+    }
+    s3.upload(params, function(s3Err,data){
+      if(s3Err) throw s3Err
+      console.log("Archivo subido exitosamente");
+    })
+  });
+
+
   try{
     connection.query(`INSERT INTO documento (nombre,autor,materia,ruta,id_us) values
-    (${req.body.nombre},${req.body.user},${req.body.materia},${req.bosy.ruta},${req.body.idUsuario})`,(error,results,fields)=>{
+    ("${req.body.nombre}","${req.body.user}","${req.body.materia}","${llave}","${req.body.idUsuario}")`,(error,results,fields)=>{
       if(error){
         console.log(error);
       }else{
@@ -164,5 +196,27 @@ app.post('/user', async(req,res) => {
   }
 });
 
+
+app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
+  console.log(req.files.file);
+  const content = fs.readFileSync(req.files.file.path);
+  const params = {
+    Bucket: 'piperepo-mx',
+    Key: req.files.file.originalFilename,
+    Body: content
+  }
+  console.log(params);
+  s3.upload(params, function(s3Err, data) {
+    if (s3Err){
+      console.log("ERROR: \n",s3Err);
+      res.send({"response":500})
+    }
+    console.log(`File uploaded successfully`);
+    res.send({"response":200});
+  });
+
+  // res.send({"response":200});
+  
+});
 
 connection.connect();
