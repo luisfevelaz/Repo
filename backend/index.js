@@ -237,7 +237,7 @@ app.post('/userData',async(req,res)=>{
 
 });
 
-
+// PRUEBAS PARA EL ALMACENAMIENTO EN S3
 app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
   console.log(req.files.file);
   const content = fs.readFileSync(req.files.file.path);
@@ -258,6 +258,25 @@ app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
 
   // res.send({"response":200});
   
+});
+
+app.get('/docs', async(req,res)=>{
+  const params = {
+    Bucket: 'piperepo-mx',
+    Key: 'UNIDAD TEMÁTICA XII.pdf'
+  }
+  // s3.getObject(params, function(err,data){
+  //   if(err){
+  //     console.log(err);
+  //   }
+  //   var object =
+  //   console.log(object);
+  // });
+  res.attachment('UNIDAD TEMÁTICA XII.pdf');
+  var fileStream = s3.getObject(params).createReadStream();
+  console.log(fileStream);
+  res.send({"message":"Hello World!"});
+
 });
 
 connection.connect();
