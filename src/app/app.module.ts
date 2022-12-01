@@ -13,6 +13,7 @@ import { AboutComponent } from './about/about.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     NabvarLoginComponent,
     RegisterComponent,
     AboutComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    UploadDocumentsComponent
   ],
   imports: [
     BrowserModule,
