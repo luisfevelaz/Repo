@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ContactComponent } from './contact/contact.component';
+import { ShowpdfComponent } from './showpdf/showpdf.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     NabvarLoginComponent,
     RegisterComponent,
     AboutComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ContactComponent,
+    ShowpdfComponent
   ],
   imports: [
     BrowserModule,
