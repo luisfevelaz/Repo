@@ -165,7 +165,7 @@ app.post('/login', async(req, res) => {
           console.log(results);
           if(results.length > 0){
             // console.log(results[0].id);
-            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id});
+            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id,"username": results[0].username});
           }else{
             res.json({"response": 500,"result": "The user/password is wrong"});
           }
@@ -196,7 +196,44 @@ app.post('/user', async(req,res) => {
   }
 });
 
-app.get('/user',async(req,res)=>{
+app.put('/user', async(req,res) => {
+  try{
+    connection.query(`UPDATE usuario SET nombre = "${req.body.nombre}",username = "${req.body.username}",contra = "${req.body.password}";`,
+    (error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        if(results.length > 0){
+          res.json({"response": 500, "result": "the user could not be modified"});
+        }else{
+          res.json({"response": 200, "result": "User modified"});
+        }
+      }
+    });
+  }catch (error) {
+      console.log(error);
+  }
+});
+
+
+
+app.post('/userData',async(req,res)=>{
+  try{
+    connection.query(`SELECT nombre, username, contra FROM usuario where id=${req.body.idUser};`,
+    (error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        if(results.length > 0){
+          res.json({"response": 200, "result": "User registered successfuly","userInfo": results[0]});
+        }else{
+          res.json({"response": 500,"result": "Server Error"});
+        }
+      }
+    });
+  }catch (error) {
+      console.log(error);
+  }
 
 });
 
