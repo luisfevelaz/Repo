@@ -5,6 +5,7 @@ import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'register', component: RegisterComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'editProfile', component: EditProfileComponent}
+  {path: 'editProfile', component: EditProfileComponent},
+  {path: 'uploadDocuments', component: UploadDocumentsComponent}
 ];
 
 @NgModule({

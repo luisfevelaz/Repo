@@ -11,6 +11,7 @@ import { NabvarLoginComponent } from './nabvar-login/nabvar-login.component';
 import { RegisterComponent } from './register/register.component';
 import { AboutComponent } from './about/about.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     NabvarLoginComponent,
     RegisterComponent,
     AboutComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    UploadDocumentsComponent
   ],
   imports: [
     BrowserModule,
