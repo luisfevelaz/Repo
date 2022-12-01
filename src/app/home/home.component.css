@@ -1,17 +1,17 @@
-header{
+.welcome{
     --opacidad-negro: 0.4;
     background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("src\assets\img\backgroundOrigin.jpg");
-    height: 100vh;
     background-size: cover;
     background-position: center center;
-}
-
-.banner-text{
-    padding-top: 180px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
-.banner-text p{
+.banner-text{
     color: white;
 }
 
@@ -100,7 +100,34 @@ header{
         opacity: 1;
     }
 }
-
-/* @media screen (){
-    
-} */
+@media screen and (max-width: 650px){
+    .text-area{
+        font-size: 40px;
+    }
+}
+@media screen and (max-height: 650px) {
+    .text-area{
+        font-size: 40px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .text-area{
+        font-size: 30px;
+    }
+    .info p{
+        font-size: 0.85rem;
+    }
+}
+@media screen and (max-height: 320px) {
+    .text-area{
+        font-size: 30px;
+    }
+    .info p{
+        font-size: 0.85rem;
+    }
+}
+@media screen and (max-height: 180px) {
+    .welcome{
+        overflow: scroll;
+    }
+}

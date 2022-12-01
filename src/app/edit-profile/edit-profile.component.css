@@ -6,7 +6,7 @@
     border: none;
 }
 
-#register-form .rigth-img{
+#edit-profile-form .rigth-img{
     --opacidad-negro: 0.4;
     background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url('src\assets\img\lampStreetBig.jpg');
     background-repeat: no-repeat;
@@ -14,17 +14,17 @@
 }
 
 @media (max-width: 991px) {
-    #register-form .rigth-img{
+    #edit-profile-form .rigth-img{
         display: none;
     }
 
-    #register-form .container-form{
+    #edit-profile-form .container-form{
         border-radius: 20px;
         width: 95%;
         height: auto;
     }
 }  
-#register-form{
+#edit-profile-form{
     background-color: #0D141C;
     /* height: 100vh; */
     display: flex;
