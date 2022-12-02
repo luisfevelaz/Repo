@@ -1,1 +1,10 @@
-<p>documents works!</p>
+<div *ngIf="showItems">
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" aria-current="true" *ngFor="let item of items" [routerLink]="['/showpdf', item.id]">
+          {{item.nombre}}
+        </a>
+      </div>
+</div>
+<div *ngIf="!showItems">
+    <p>Holaaa</p>
+</div>

@@ -1,6 +1,6 @@
 //Credenciales para acceder a amazon s3
-const AWS_ACCESS_KEY ='AKIAXTJR7ARI6VLZ5BUS';
-const AWS_SECRET_ACCESS_KEY='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';
+const AWS_ACCESS_KEY ='';
+const AWS_SECRET_ACCESS_KEY='';
 
 
 const fs = require('fs');
@@ -59,17 +59,38 @@ app.listen(puerto,()=>{
 
 app.get('/documento', async(req, res) => {
   try {
-      connection.query("SELECT id,nombre,ruta from documento;",(error,results,fields) =>{
+      connection.query("SELECT * from documento;",(error,results,fields) =>{
         if(error){
           console.log(error);
+          res.json({"response":500});
         }else{
-          res.send(results);
+          res.json({"response":200,"results": results});
         }
       });
   } catch (error) {
       console.log(error);
   }
 })
+
+app.post('/documentoID', async(req,res)=>{
+  try{
+    connection.query(`SELECT * FROM documento where id = ${req.body.id};`,(error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        
+        if(results.length > 0){
+          // console.log(results[0].id);
+          res.json({"response": 200, "result": "User registered successfuly","documento": results[0]});
+        }else{
+          res.json({"response": 500,"result": "The user/password is wrong"});
+        }
+      }
+    });
+  }catch (error) {
+      console.log(error);
+  }
+});
 
 app.put('/documento',async(req,res) =>{
   try{
@@ -92,7 +113,7 @@ app.put('/documento',async(req,res) =>{
         if(results.length > 0){
           res.json({"response": 200,"result":"Successful update"});
         }else{
-          res.json({"reponse": 500,"result":"Update error"});
+          res.json({"response": 500,"result":"Update error"});
         }
       }
   });
