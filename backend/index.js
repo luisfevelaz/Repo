@@ -1,3 +1,4 @@
+//Credenciales para acceder a amazon s3
 const AWS_ACCESS_KEY ='';
 const AWS_SECRET_ACCESS_KEY='';
 
