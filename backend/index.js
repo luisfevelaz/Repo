@@ -232,7 +232,8 @@ app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
   const params = {
     Bucket: 'piperepo-mx',
     Key: llave,
-    Body: content
+    Body: content,
+    ContentType:"application/pdf"
   }
   // console.log(params);
   s3.upload(params, function(s3Err, data) {
