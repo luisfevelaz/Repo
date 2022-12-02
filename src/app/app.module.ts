@@ -12,7 +12,6 @@ import { RegisterComponent } from './register/register.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { ShowpdfComponent } from './showpdf/showpdf.component';

@@ -1,6 +1,13 @@
-const { query } = require('express');
-var express = require('express');
-var bodyParser = require('body-parser')
+const AWS_ACCESS_KEY ='';
+const AWS_SECRET_ACCESS_KEY='';
+
+
+const fs = require('fs');
+const AWS = require('aws-sdk');
+const express = require('express');
+const bodyParser = require('body-parser')
+const multipart = require('connect-multiparty');
+
 var app = express();
 
 var mysql      = require('mysql');
@@ -9,7 +16,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'repositorio'
+  database : 'repo'
 });
 
 const puerto = 3000;
@@ -33,9 +40,15 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const s3 = new AWS.S3({
+  accessKeyId: AWS_ACCESS_KEY,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY
+});
+
+const multiPartMiddleware = multipart();
 
 app.listen(puerto,()=>{
     console.log("Servidor corriendo en el puerto ",puerto);
@@ -58,9 +71,28 @@ app.get('/documento', async(req, res) => {
 })
 
 app.post('/documento',async(req,res)=>{
+
+  const fileName = req.body.ruta;
+  const llave = req.body.nombre+'.pdf';
+  fs.readFile(fileName,(err,data) =>{
+    if(err){
+      throw err;
+    }
+    const params = {
+      Bucket: 'piperepo-mx',
+      Key: llave,
+      Body: JSON.stringify(data,null,2)
+    }
+    s3.upload(params, function(s3Err,data){
+      if(s3Err) throw s3Err
+      console.log("Archivo subido exitosamente");
+    })
+  });
+
+
   try{
     connection.query(`INSERT INTO documento (nombre,autor,materia,ruta,id_us) values
-    (${req.body.nombre},${req.body.user},${req.body.materia},${req.bosy.ruta},${req.body.idUsuario})`,(error,results,fields)=>{
+    ("${req.body.nombre}","${req.body.user}","${req.body.materia}","${llave}","${req.body.idUsuario}")`,(error,results,fields)=>{
       if(error){
         console.log(error);
       }else{
@@ -126,14 +158,14 @@ app.delete('/documento',async(req,res) => {
 
 app.post('/login', async(req, res) => {
   try {
-      connection.query(`SELECT username FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
+      connection.query(`SELECT id,username FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
         if(error){
           console.log(error);
         }else{
           console.log(results);
           if(results.length > 0){
-            console.log(results);
-            res.json({"response": 200, "result": "User registered successfuly"});
+            // console.log(results[0].id);
+            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id,"username": results[0].username});
           }else{
             res.json({"response": 500,"result": "The user/password is wrong"});
           }
@@ -164,5 +196,87 @@ app.post('/user', async(req,res) => {
   }
 });
 
+app.put('/user', async(req,res) => {
+  try{
+    connection.query(`UPDATE usuario SET nombre = "${req.body.nombre}",username = "${req.body.username}",contra = "${req.body.password}";`,
+    (error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        if(results.length > 0){
+          res.json({"response": 500, "result": "the user could not be modified"});
+        }else{
+          res.json({"response": 200, "result": "User modified"});
+        }
+      }
+    });
+  }catch (error) {
+      console.log(error);
+  }
+});
+
+
+
+app.post('/userData',async(req,res)=>{
+  try{
+    connection.query(`SELECT nombre, username, contra FROM usuario where id=${req.body.idUser};`,
+    (error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        if(results.length > 0){
+          res.json({"response": 200, "result": "User registered successfuly","userInfo": results[0]});
+        }else{
+          res.json({"response": 500,"result": "Server Error"});
+        }
+      }
+    });
+  }catch (error) {
+      console.log(error);
+  }
+
+});
+
+// PRUEBAS PARA EL ALMACENAMIENTO EN S3
+app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
+  console.log(req.files.file);
+  const content = fs.readFileSync(req.files.file.path);
+  const params = {
+    Bucket: 'piperepo-mx',
+    Key: req.files.file.originalFilename,
+    Body: content
+  }
+  console.log(params);
+  s3.upload(params, function(s3Err, data) {
+    if (s3Err){
+      console.log("ERROR: \n",s3Err);
+      res.send({"response":500})
+    }
+    console.log(`File uploaded successfully`);
+    res.send({"response":200});
+  });
+
+  // res.send({"response":200});
+  
+});
+
+app.get('/docs', async(req,res)=>{
+  const params = {
+    Bucket: 'piperepo-mx',
+    Key: 'UNIDAD TEMÁTICA XII.pdf'
+  }
+  // s3.getObject(params, function(err,data){
+  //   if(err){
+  //     console.log(err);
+  //   }
+  //   var object =
+  //   console.log(object);
+  // });
+  res.attachment('UNIDAD TEMÁTICA XII.pdf');
+  var fileStream = s3.getObject(params).createReadStream();
+  console.log(fileStream);
+  res.send({"message":"Hello World!"});
+
+});
 
 connection.connect();

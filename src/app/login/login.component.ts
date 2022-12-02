@@ -35,7 +35,10 @@ export class LoginComponent implements OnInit {
       let resp = JSON.parse(result);
 
       if(resp.response == 200){
-        this._router.navigateByUrl('/home');
+        localStorage.clear();
+        localStorage.setItem('id',resp.idUser);
+        localStorage.setItem('user',resp.username);
+        this._router.navigate(['/home'],resp.idUser);
       }
       
     });
