@@ -17,10 +17,13 @@
         <a class="nav-link" routerLink="/about">Acerca de</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login" *ngIf="!readLocalStorageValue()">Iniciar sesion</a>
+          <a class="nav-link" routerLink="/login" *ngIf="!readLocalStorageValue()">Iniciar sesion</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/editProfile">Editar perfil</a>
+        <a class="nav-link" routerLink="/editProfile" *ngIf="readLocalStorageValue()">Editar perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" (click)="deleteLocalStorageValue()" *ngIf="readLocalStorageValue()">Cerrar sesion</a>
       </li>
     </ul>
   </div>
