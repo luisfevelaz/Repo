@@ -1,6 +1,22 @@
-pdf-viewer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    filter: drop-shadow(5px 5px 5px #222222);
+.pdf{
+  width:80%;
+  height:700px;
+  text-align: center;
+}
+.cont{
+  text-align: center;
+  padding-bottom: 2%;
+}
+#login-form{
+  background: #0D141C;
+  color: whitesmoke;
+}
+.texto{
+  padding-left: 2%;
+  text-align: center;
+}
+@media screen and (max-width: 650px) {
+  .pdf {
+    width: 100%;
   }
+}

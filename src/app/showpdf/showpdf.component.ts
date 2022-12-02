@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./showpdf.component.css']
 })
 export class ShowpdfComponent implements OnInit {
+  public pdfSource: string =  "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 
   constructor() { }
 
