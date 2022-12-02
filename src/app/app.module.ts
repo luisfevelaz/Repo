@@ -17,6 +17,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ShowpdfComponent } from './showpdf/showpdf.component';
 
 
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ShowpdfComponent } from './showpdf/showpdf.component';
     AboutComponent,
     EditProfileComponent,
     ContactComponent,
-    ShowpdfComponent
+    ShowpdfComponent,
+    UploadDocumentsComponent
   ],
   imports: [
     BrowserModule,

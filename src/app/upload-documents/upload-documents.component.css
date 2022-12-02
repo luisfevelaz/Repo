@@ -1,0 +1,40 @@
+.gradient-custom-2 {
+    /* Chrome, Safari olders*/
+    background: -webkit-linear-gradient(to right, #4B5320, #3C4411, #2D3502, #5A622F);
+    /* Edge, Firefox, Chrome, Opera, Safari */
+    background: linear-gradient(to right, #4B5320, #3C4411, #2D3502, #5A622F);
+    border: none;
+}
+
+#uploadDocuments-form .rigth-img{
+    --opacidad-negro: 0.4;
+    background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url('src\assets\img\violetPersonBig.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (max-width: 991px) {
+    #uploadDocuments-form .rigth-img{
+        display: none;
+    }
+
+    #uploadDocuments-form .container-form{
+        border-radius: 20px;
+        width: 95%;
+        height: auto;
+    }
+}  
+#uploadDocuments-form{
+    background-color: #0D141C;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* overflow: scroll; */
+}
+
+.mt-100{
+    margin-top: 100px
+}
