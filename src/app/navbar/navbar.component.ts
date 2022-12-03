@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   readLocalStorageValue(){
     if(localStorage.getItem('user')){
+      this.name = localStorage.getItem('nombre');
       return true;
     }else{
       return false;

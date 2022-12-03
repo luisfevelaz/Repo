@@ -12,10 +12,13 @@ export class LoginComponent implements OnInit {
 
   login = new FormGroup({
     email: new FormControl('',Validators.email),
-    password: new FormControl('',Validators.minLength(3))
+    password: new FormControl('',Validators.minLength(3)),
+    nombre: new FormControl('',Validators.maxLength(30))
+    //falta validator de nombre
   });
   
-  url='http://192.168.100.6:3000/login'
+  url='http://192.168.100.80:3000/login'
+  // url='http://192.168.100.80:3000/login'
 
   constructor(private http: HttpClient, private _router: Router) { }
 
@@ -27,7 +30,8 @@ export class LoginComponent implements OnInit {
     
     let body: any = {
       username: this.login.get("email").value,
-      password: this.login.get("password").value
+      password: this.login.get("password").value,
+      nombre: this.login.get("nombre").value
     };
 
     this.http.post(this.url,body,{responseType: 'text'}).subscribe((result) => {

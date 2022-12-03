@@ -49,8 +49,8 @@ export class EditProfileComponent implements OnInit {
       let resp = JSON.parse(result);
 
       if(resp.response == 200){
-        //hacer algo para mandar un alert de éxito
-        
+        //alert
+        console.log("Exito al actualizar perfil")
       }
       
     });
