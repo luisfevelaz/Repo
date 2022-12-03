@@ -1,0 +1,9 @@
+<div class="list-group px-5" *ngIf="showItems">
+    <a class="list-group-item list-group-item-action d-flex justify-content-between px-5" *ngFor="let item of items">
+        {{item.nombre}}
+        <div>
+            <button type="button" class="btn btn-success mx-2" *ngIf="!item.aprobado" (click)="aprobarDocumento(item.id,1)">Aprobar</button>
+            <button type="button" class="btn btn-danger" *ngIf="item.aprobado" (click)="aprobarDocumento(item.id,0)">Rechazar</button>
+        </div>
+    </a>
+  </div>

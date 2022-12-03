@@ -17,6 +17,7 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 import { ContactComponent } from './contact/contact.component';
 import { ShowpdfComponent } from './showpdf/showpdf.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { ApproveComponent } from './approve/approve.component';
 
 
 
@@ -34,7 +35,8 @@ import { DocumentsComponent } from './documents/documents.component';
     UploadDocumentsComponent,
     ContactComponent,
     ShowpdfComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    ApproveComponent
   ],
   imports: [
     BrowserModule,

@@ -59,6 +59,20 @@ app.listen(puerto,()=>{
 
 app.get('/documento', async(req, res) => {
   try {
+      connection.query("SELECT * from documento where aprobado=1;",(error,results,fields) =>{
+        if(error){
+          console.log(error);
+          res.json({"response":500});
+        }else{
+          res.json({"response":200,"results": results});
+        }
+      });
+  } catch (error) {
+      console.log(error);
+  }
+})
+app.get('/documentoCompleto', async(req, res) => {
+  try {
       connection.query("SELECT * from documento;",(error,results,fields) =>{
         if(error){
           console.log(error);
@@ -88,7 +102,27 @@ app.post('/documentoID', async(req,res)=>{
       }
     });
   }catch (error) {
-      console.log(error);
+    console.log(error);
+  }
+});
+
+app.put('/documentoAprobado', async(req,res)=>{
+  try{
+    connection.query(`UPDATE documento SET aprobado=${req.body.aprobado} where id=${req.body.id};`,(error,results,fields) =>{
+      if(error){
+        console.log(error);
+      }else{
+        
+        if(results.length > 0){
+          // console.log(results[0].id);
+          res.json({"response": 500, "result": "the documento could not be modified"});
+        }else{
+          res.json({"response": 200, "result": "the document was modified"});
+        }
+      }
+    });
+  }catch (error) {
+    console.log(error);
   }
 });
 
@@ -144,14 +178,14 @@ app.delete('/documento',async(req,res) => {
 
 app.post('/login', async(req, res) => {
   try {
-      connection.query(`SELECT id,username,nombre FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
+      connection.query(`SELECT id,username,nombre,is_admin FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
         if(error){
           console.log(error);
         }else{
           
           if(results.length > 0){
             // console.log(results[0].id);
-            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id,"username": results[0].username,"nombre": results[0].nombre});
+            res.json({"response": 200, "result": "successful login ","idUser": results[0].id,"username": results[0].username,"nombre": results[0].nombre,"isAdmin":results[0].is_admin});
           }else{
             res.json({"response": 500,"result": "The user/password is wrong"});
           }

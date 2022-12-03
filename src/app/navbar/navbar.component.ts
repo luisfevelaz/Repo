@@ -22,6 +22,13 @@ export class NavbarComponent implements OnInit {
       return false;
     }
   }
+
+  readAdmin(){
+    if(localStorage.getItem("admin") == "1"){
+      return true;
+    }
+    return false;
+  }
   
   deleteLocalStorageValue(){
     localStorage.clear();
