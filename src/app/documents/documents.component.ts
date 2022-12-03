@@ -11,6 +11,7 @@ export class DocumentsComponent implements OnInit {
   url='http://192.168.100.6:3000/documento'
   items: Array<any>;
   showItems: Boolean = false;
+  categoria: string = "";
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,23 @@ export class DocumentsComponent implements OnInit {
         this.showItems = true;
       }
     });
+  }
 
+  onChange(deviceValue) {
+    // console.log(deviceValue);
+    if(deviceValue == "Categoria"){
+      this.categoria = "";
+    }else{
+      this.categoria = deviceValue;
+    }
+  }
+
+  checkCategoria(categoriaItem){
+    if(this.categoria == categoriaItem || this.categoria == ""){
+      return true;
+    }else{
+      return false
+    }
   }
 
 }

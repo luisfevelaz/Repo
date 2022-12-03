@@ -4,7 +4,7 @@
   <div class="mininav">
     <h2>Documentos</h2>
     <div class="form-outline mb-2" style="height: 100%;">
-        <select class="form-control btn-dark h-100" formControlName="materia" style="height: 100%;">
+        <select class="form-control btn-dark h-100" style="height: 100%;" (change)="onChange($event.target.value)">
             <option selected>Categoria</option>
             <option value="matematicas">Matematicas</option>
             <option value="biologia">Biologia</option>
@@ -43,11 +43,13 @@
   <br>
   <div *ngIf="showItems" class="docs">
     <div class="list-group">
-      <a class="list-group-item-warning list-group-item list-group-item-action" aria-current="true"
-        *ngFor="let item of items" [routerLink]="['/showpdf', item.id]">
-        <img src="../../assets/img/file.svg" class="img1" />
-        {{item.nombre}}
-      </a>
+      <div *ngFor="let item of items">
+        <a class="list-group-item-warning list-group-item list-group-item-action" aria-current="true"
+           [routerLink]="['/showpdf', item.id]" *ngIf="checkCategoria(item.materia)">
+          <img src="../../assets/img/file.svg" class="img1" />
+          {{item.nombre}}
+        </a>
+      </div>
     </div>
     <div *ngIf="!showItems">
       <p>Holaaa</p>
