@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('',Validators.minLength(3))
   });
   
-  url='http://192.168.100.6:3000/login'
+  url='http://192.168.100.41:3000/login'
 
   constructor(private http: HttpClient, private _router: Router) { }
 

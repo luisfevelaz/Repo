@@ -1,10 +1,60 @@
-<div *ngIf="showItems">
+<app-navbar></app-navbar>
+<div class="fondo">
+  
+  <div class="mininav">
+    <h2>Documentos</h2>
+    <div class="form-outline mb-2" style="height: 100%;">
+        <select class="form-control btn-dark h-100" formControlName="materia" style="height: 100%;">
+            <option selected>Categoria</option>
+            <option value="matematicas">Matematicas</option>
+            <option value="biologia">Biologia</option>
+            <option value="quimica">Quimica</option>
+            <option value="geografia">Geografia</option>
+            <option value="lenguas">Lenguas</option>
+            <option value="ingenieria civil">Ingenieria civil</option>
+            <option value="electronica">Electronica</option>
+            <option>Informatica</option>
+            <option>Medicina</option>
+            <option>Deportes</option>
+            <option>Leyes</option>
+            <option>Social</option>
+            <option>Artes</option>
+            <option>Cocina</option>
+            <option>Electricidad</option>
+            <option>Robotica</option>
+            <option>Cultural</option>
+            <option>Historia</option>
+            <option>Diseño</option>
+            <option>Tecnologia</option>
+            <option>Agronomia</option>
+            <option>Veterinaria</option>
+            <option>Otro</option>
+        </select>
+    </div>
+    
+    <div class="input-group rounded w-25">
+      <input type="search" class="form-control rounded h-100" placeholder="Search" aria-label="Search"
+        aria-describedby="search-addon" />
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="showItems" class="docs">
     <div class="list-group">
-        <a class="list-group-item list-group-item-action" aria-current="true" *ngFor="let item of items" [routerLink]="['/showpdf', item.id]">
-          {{item.nombre}}
-        </a>
-      </div>
+      <a class="list-group-item-warning list-group-item list-group-item-action" aria-current="true"
+        *ngFor="let item of items" [routerLink]="['/showpdf', item.id]">
+        <img src="../../assets/img/file.svg" class="img1" />
+        {{item.nombre}}
+      </a>
+    </div>
+    <div *ngIf="!showItems">
+      <p>Holaaa</p>
+    </div>
+  </div>
 </div>
-<div *ngIf="!showItems">
-    <p>Holaaa</p>
-</div>
+
+
+
+

@@ -15,7 +15,7 @@ export class ShowpdfComponent implements OnInit {
   pdfURL: string = "https://piperepo-mx.s3.amazonaws.com/"
 
   idPDF: string
-  url='http://192.168.100.6:3000/documentoID'
+  url='http://192.168.100.41:3000/documentoID'
   nombre: string = "No hay nombre registrado";
   autor: string = "desconocido";
   categoria: string = "desconocida";

@@ -17,7 +17,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'repo'
+  database : 'repo',
+  port:3307
 });
 
 const puerto = 3000;
