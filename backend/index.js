@@ -1,3 +1,4 @@
+//Credenciales para acceder a amazon s3
 const AWS_ACCESS_KEY ='';
 const AWS_SECRET_ACCESS_KEY='';
 
@@ -16,7 +17,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'repo'
+  database : 'repo',
+  port:3307
 });
 
 const puerto = 3000;
@@ -58,11 +60,12 @@ app.listen(puerto,()=>{
 
 app.get('/documento', async(req, res) => {
   try {
-      connection.query("SELECT id,nombre,ruta from documento;",(error,results,fields) =>{
+      connection.query("SELECT * from documento;",(error,results,fields) =>{
         if(error){
           console.log(error);
+          res.json({"response":500});
         }else{
-          res.send(results);
+          res.json({"response":200,"results": results});
         }
       });
   } catch (error) {
@@ -70,39 +73,23 @@ app.get('/documento', async(req, res) => {
   }
 })
 
-app.post('/documento',async(req,res)=>{
-
-  const fileName = req.body.ruta;
-  const llave = req.body.nombre+'.pdf';
-  fs.readFile(fileName,(err,data) =>{
-    if(err){
-      throw err;
-    }
-    const params = {
-      Bucket: 'piperepo-mx',
-      Key: llave,
-      Body: JSON.stringify(data,null,2)
-    }
-    s3.upload(params, function(s3Err,data){
-      if(s3Err) throw s3Err
-      console.log("Archivo subido exitosamente");
-    })
-  });
-
-
+app.post('/documentoID', async(req,res)=>{
   try{
-    connection.query(`INSERT INTO documento (nombre,autor,materia,ruta,id_us) values
-    ("${req.body.nombre}","${req.body.user}","${req.body.materia}","${llave}","${req.body.idUsuario}")`,(error,results,fields)=>{
+    connection.query(`SELECT * FROM documento where id = ${req.body.id};`,(error,results,fields) =>{
       if(error){
         console.log(error);
       }else{
+        
         if(results.length > 0){
-          res.json({"response": 200,"result": "Successful upload"});
+          // console.log(results[0].id);
+          res.json({"response": 200, "result": "User registered successfuly","documento": results[0]});
+        }else{
+          res.json({"response": 500,"result": "The user/password is wrong"});
         }
       }
     });
-  }catch(error){
-    console.log(error);
+  }catch (error) {
+      console.log(error);
   }
 });
 
@@ -127,7 +114,7 @@ app.put('/documento',async(req,res) =>{
         if(results.length > 0){
           res.json({"response": 200,"result":"Successful update"});
         }else{
-          res.json({"reponse": 500,"result":"Update error"});
+          res.json({"response": 500,"result":"Update error"});
         }
       }
   });
@@ -158,14 +145,14 @@ app.delete('/documento',async(req,res) => {
 
 app.post('/login', async(req, res) => {
   try {
-      connection.query(`SELECT id,username FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
+      connection.query(`SELECT id,username,nombre FROM usuario where username = "${req.body.username}" and contra = "${req.body.password}";`,(error,results,fields) =>{
         if(error){
           console.log(error);
         }else{
-          console.log(results);
+          
           if(results.length > 0){
             // console.log(results[0].id);
-            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id,"username": results[0].username});
+            res.json({"response": 200, "result": "User registered successfuly","idUser": results[0].id,"username": results[0].username,"nombre": results[0].nombre});
           }else{
             res.json({"response": 500,"result": "The user/password is wrong"});
           }
@@ -239,24 +226,40 @@ app.post('/userData',async(req,res)=>{
 
 // PRUEBAS PARA EL ALMACENAMIENTO EN S3
 app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
-  console.log(req.files.file);
+  console.log(req.files);
+  console.log(req.body);
+  const llave = req.files.file.originalFilename;
   const content = fs.readFileSync(req.files.file.path);
   const params = {
     Bucket: 'piperepo-mx',
-    Key: req.files.file.originalFilename,
-    Body: content
+    Key: llave,
+    Body: content,
+    ContentType:"application/pdf"
   }
-  console.log(params);
+  // console.log(params);
   s3.upload(params, function(s3Err, data) {
     if (s3Err){
       console.log("ERROR: \n",s3Err);
-      res.send({"response":500})
+      res.send({"response":500,"result": "Error while uploading the file"});
     }
-    console.log(`File uploaded successfully`);
-    res.send({"response":200});
   });
 
-  // res.send({"response":200});
+  try{
+    connection.query(`INSERT INTO documento (nombre,autor,materia,ruta,id_us) values
+    ("${req.body.nombre}","${req.body.autor}","${req.body.materia}","${llave}","${req.body.idUser}")`,(error,results,fields)=>{
+      if(error){
+        console.log(error);
+      }else{
+        if(results.length > 0){
+          res.json({"response": 500,"result": "Database error"});
+        }else{
+          res.json({"response": 200,"result": "Successful upload"});
+        }
+      }
+    });
+  }catch(error){
+    console.log(error);
+  }
   
 });
 

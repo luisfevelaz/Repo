@@ -1,0 +1,32 @@
+.fondo{
+    background: #0D141C;
+    color: whitesmoke;
+    align-items: center;
+    height: 100vh;
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+}
+.docs{
+    width: 100%;
+    
+    padding-bottom: 2%;
+    max-height: 600px;
+}
+.img1{
+    height: 2%;
+    width: 2%;
+}
+.mininav{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width: 650px) {
+    .docs {
+      width: 100%;
+      padding-left: 0%;
+      padding-right: 0%;
+    }
+    
+  }
+  /* Libros en un contenedor y darle max height */

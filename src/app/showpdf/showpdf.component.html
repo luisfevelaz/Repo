@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 <section class="gradient-form" id="login-form">
     <div class="texto">
-        <h2>Nombre del doc</h2>
-        <h4>Autor</h4>
-        <h4>Categoria</h4>
-        <h4>Ruta</h4>
+        <h2>Nombre: {{nombre}}</h2>
+        <h4>Autor: {{autor}}</h4>
+        <h4>Categoría: {{categoria}}</h4>
+        <h4>Ruta: {{ruta}}</h4>
     </div>
     
     <div class="cont">
-        <iframe src="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf" frameborder="0"
+        <iframe [src]="pdfSource" frameborder="0"
             class="pdf"></iframe>
     </div>
 </section>

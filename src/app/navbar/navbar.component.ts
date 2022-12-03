@@ -12,14 +12,19 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.name = localStorage.getItem("user")
   }
 
   readLocalStorageValue(){
-    if(localStorage.getItem('username') != undefined){
+    if(localStorage.getItem('user')){
       return true;
     }else{
       return false;
     }
+  }
+  
+  deleteLocalStorageValue(){
+    localStorage.clear();
   }
 
 }

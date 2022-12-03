@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditProfileComponent implements OnInit {
 
-  url='http://192.168.100.6:3000/';
+  url='http://192.168.100.41:3000/';
 
   edit = new FormGroup({
     nombre: new FormControl('',Validators.maxLength(30)),
@@ -50,6 +50,7 @@ export class EditProfileComponent implements OnInit {
 
       if(resp.response == 200){
         //hacer algo para mandar un alert de éxito
+        
       }
       
     });
