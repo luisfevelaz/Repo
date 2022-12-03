@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<section class="gradient-form" id="login-form">
+    <div class="texto">
+        <h2>Nombre: {{nombre}}</h2>
+        <h4>Autor: {{autor}}</h4>
+        <h4>Categoría: {{categoria}}</h4>
+        <h4>Ruta: {{ruta}}</h4>
+    </div>
+    
+    <div class="cont">
+        <iframe [src]="pdfSource" frameborder="0"
+            class="pdf"></iframe>
+    </div>
+</section>

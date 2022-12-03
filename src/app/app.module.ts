@@ -14,6 +14,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { ContactComponent } from './contact/contact.component';
+import { ShowpdfComponent } from './showpdf/showpdf.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { ApproveComponent } from './approve/approve.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +32,11 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
     RegisterComponent,
     AboutComponent,
     EditProfileComponent,
-    UploadDocumentsComponent
+    UploadDocumentsComponent,
+    ContactComponent,
+    ShowpdfComponent,
+    DocumentsComponent,
+    ApproveComponent
   ],
   imports: [
     BrowserModule,

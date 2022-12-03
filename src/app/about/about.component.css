@@ -100,3 +100,24 @@ html {
 .cropped img {
   margin: -150px 0px 0px -150px;
 }
+.banner-btn a{
+  border: 1px solid white;
+  border-radius: 50px;
+  text-decoration: none;
+  padding: 10px 50px;
+  color: white;
+  display: inline-block;
+  margin-top: 5px;
+  transition: all .6s;
+  text-align: center;
+}
+
+.banner-btn a:hover{
+  border: 1px solid yellow;
+  background: yellow;
+  color: black;
+}
+.btny{
+  text-align: center;
+  padding-bottom: 1%;
+}
