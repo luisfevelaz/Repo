@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditProfileComponent implements OnInit {
 
-  url='http://192.168.100.6:3000/';
+  url='http://192.168.100.80:3000/';
 
   edit = new FormGroup({
     nombre: new FormControl('',Validators.maxLength(30)),
@@ -17,7 +19,7 @@ export class EditProfileComponent implements OnInit {
     password: new FormControl('',Validators.minLength(3))
   });
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _router: Router) {
     this.http.post(this.url+'userData',{idUser: localStorage.getItem('id')},{responseType: 'text'}).subscribe((result) => {
       console.log(result);
       let resp = JSON.parse(result);
@@ -36,8 +38,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   enviarEdit(){
-    console.log("Hola");
-
     let body: any = {
       nombre: this.edit.get("nombre").value,
       username: this.edit.get("usuario").value,
@@ -45,12 +45,16 @@ export class EditProfileComponent implements OnInit {
     };
 
     this.http.put(this.url+'user',body,{responseType: 'text'}).subscribe((result) => {
-      console.log(result);
+      console.log(result); 
       let resp = JSON.parse(result);
 
+
+      console.log(resp.username);
+
       if(resp.response == 200){
-        //alert
-        console.log("Exito al actualizar perfil")
+        localStorage.setItem('user',resp.username);
+        localStorage.setItem('nombre',resp.nombre);
+        this._router.navigate(['/home']);
       }
       
     });

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     //falta validator de nombre
   });
   
-  url='http://192.168.100.6:3000/login'
+  url='http://192.168.100.80:3000/login'
   // url='http://192.168.100.80:3000/login'
 
   constructor(private http: HttpClient, private _router: Router) { }

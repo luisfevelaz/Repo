@@ -19,19 +19,19 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/login" *ngIf="!readLocalStorageValue()">Iniciar sesion</a>
       </li>
+      <li class="nav-item" *ngIf="readAdmin()">
+          <a class="nav-link" routerLink="/approve">Solicitudes</a>
+      </li>
       <li class="nav-item dropdown"  *ngIf="readLocalStorageValue()">
         <a class="btn sesionDrop nav-link dropdown-toggle mr-md-2" data-toggle="dropdown" aria-expanded="true">
           {{ name }}
         </a>
         <div class="dropdown-menu dropdown-menu-md-right text-center" style="background-color: #071727;">
           <a class="dropdown-item sesionDropButton" style="color: rgb(196, 193, 193);" routerLink="/editProfile">Editar perfil</a>
+          <a class="dropdown-item sesionDropButton" style="color: rgb(196, 193, 193);" *ngIf="readAdmin()" routerLink="/approve">Solicitudes</a>
           <div class="dropdown-divider"  style="border-color: #040a0f;"></div>
           <a class="dropdown-item sesionDropButton"  (click)="deleteLocalStorageValue()" style="cursor: pointer; color: rgb(196, 193, 193);">Cerrar sesion</a>
-          <a class="dropdown-item sesionDropButton" style="color: rgb(196, 193, 193);" *ngIf="readAdmin()" routerLink="/approve">Solicitudes</a>
         </div>
-      <li class="nav-item" *ngIf="readAdmin()">
-          <a class="nav-link" routerLink="/approve">Solicitudes</a>
-      </li>
     </ul>
   </div>
   </div>    

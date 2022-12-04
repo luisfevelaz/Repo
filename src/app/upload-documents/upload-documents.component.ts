@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UploadDocumentsComponent implements OnInit {
 
-  url='http://192.168.100.6:3000/uploadDocs';
+  url='http://192.168.100.80:3000/uploadDocs';
 
   inputFile: File;
   
