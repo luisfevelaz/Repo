@@ -52,10 +52,10 @@ export class EditProfileComponent implements OnInit {
       console.log(resp.username);
 
       if(resp.response == 200){
-        localStorage.setItem('user',resp.username);
+        localStorage.setItem('user',body.username);
         localStorage.setItem('nombre',body.nombre);
-        this._router.navigate(['/home']);
       }
+      this._router.navigateByUrl('/');
       
     });
     

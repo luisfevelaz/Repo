@@ -13,7 +13,7 @@
                     <h4 class="mt-1 mb-5 pb-1">Edita tu perfil</h4>
                   </div>
                   <!-- Form -->
-                  <form [formGroup]="edit" (ngSubmit)="enviarEdit()">
+                  <form [formGroup]="edit">
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="user">Nuevo nombre de usuario</label>
                       <input type="text" id="user" class="form-control" formControlName="nombre"/>
@@ -48,7 +48,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" style="color: white;" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn gradient-custom-2" style="color: white;" type="submit">Aceptar</button>
+                            <button type="button" class="btn gradient-custom-2" style="color: white;" (click)="enviarEdit()" data-dismiss="modal">Aceptar</button>
                           </div>
                         </div>
                       </div>
