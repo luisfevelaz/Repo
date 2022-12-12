@@ -21,6 +21,14 @@ var connection = mysql.createConnection({
   port:3306
 });
 
+var connectionValidator = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'repo',
+  port:3306
+});
+
 const puerto = 3000;
 
 app.use(function (req, res, next) {
@@ -199,16 +207,26 @@ app.post('/login', async(req, res) => {
 
 app.post('/user', async(req,res) => {
   try{
-    connection.query(`INSERT INTO usuario (nombre,apellido_p,apellido_m,is_admin,username,contra)
-    values("${req.body.nombre}",${req.body.apellidoP},${req.body.apellidoM},${req.body.isAdmin},"${req.body.username}","${req.body.password}");`,
-    (error,results,fields) =>{
+    connectionValidator.query(`SELECT * FROM usuario WHERE username = "${req.body.username}";`,(error,results,fields) =>{
       if(error){
         console.log(error);
       }else{
         if(results.length > 0){
-          res.json({"response": 500, "result": "the user could not be registered"});
+          res.json({"response":500, "result":"The user already exists"});
         }else{
-          res.json({"response": 200, "result": "User registered successfuly"});
+          connection.query(`INSERT INTO usuario (nombre,apellido_p,apellido_m,is_admin,username,contra)
+          values("${req.body.nombre}",${req.body.apellidoP},${req.body.apellidoM},${req.body.isAdmin},"${req.body.username}","${req.body.password}");`,
+          (error,results,fields) =>{
+            if(error){
+              console.log(error);
+            }else{
+              if(results.length > 0){
+                res.json({"response": 500, "result": "the user could not be registered"});
+              }else{
+                res.json({"response": 200, "result": "User registered successfuly"});
+              }
+            }
+          });
         }
       }
     });
@@ -260,60 +278,49 @@ app.post('/userData',async(req,res)=>{
 
 // PRUEBAS PARA EL ALMACENAMIENTO EN S3
 app.post('/uploadDocs',multiPartMiddleware, async(req,res)=>{
-  console.log(req.files);
-  console.log(req.body);
-  const llave = req.files.file.originalFilename;
-  const content = fs.readFileSync(req.files.file.path);
-  const params = {
-    Bucket: 'piperepo-mx',
-    Key: llave,
-    Body: content,
-    ContentType:"application/pdf"
-  }
-  // console.log(params);
-  s3.upload(params, function(s3Err, data) {
-    if (s3Err){
-      console.log("ERROR: \n",s3Err);
-      res.send({"response":500,"result": "Error while uploading the file"});
-    }
-  });
-
   try{
-    connection.query(`INSERT INTO documento (nombre,autor,materia,ruta,id_us) values
-    ("${req.body.nombre}","${req.body.autor}","${req.body.materia}","${llave}","${req.body.idUser}")`,(error,results,fields)=>{
+    connection.query(`SELECT * FROM documento WHERE ruta="${req.files.file.originalFilename}";`,(error,results,fields) => {
       if(error){
         console.log(error);
       }else{
         if(results.length > 0){
-          res.json({"response": 500,"result": "Database error"});
+          res.json({"response":500, "result":"The document already exists"});
         }else{
-          res.json({"response": 200,"result": "Successful upload"});
+          const llave = req.files.file.originalFilename;
+          const content = fs.readFileSync(req.files.file.path);
+          const params = {
+            Bucket: 'piperepo-mx',
+            Key: llave,
+            Body: content,
+            ContentType:"application/pdf"
+          }
+          // console.log(params);
+          s3.upload(params, function(s3Err, data) {
+            if (s3Err){
+              console.log("ERROR: \n",s3Err);
+              res.json({"response":500,"result": "Error while uploading the file"});
+            }
+          });
+          connection.query(`INSERT INTO documento (nombre,autor,materia,ruta,id_us) values
+          ("${req.body.nombre}","${req.body.autor}","${req.body.materia}","${llave}","${req.body.idUser}")`,(error,results,fields)=>{
+            if(error){
+              console.log(error);
+            }else{
+              if(results.length > 0){
+                res.json({"response": 500,"result": "Database error"});
+              }else{
+                res.json({"response": 200,"result": "Successful upload"});
+              }
+            }
+          });
         }
       }
     });
   }catch(error){
-    console.log(error);
+
   }
+
   
-});
-
-app.get('/docs', async(req,res)=>{
-  const params = {
-    Bucket: 'piperepo-mx',
-    Key: 'UNIDAD TEMÁTICA XII.pdf'
-  }
-  // s3.getObject(params, function(err,data){
-  //   if(err){
-  //     console.log(err);
-  //   }
-  //   var object =
-  //   console.log(object);
-  // });
-  res.attachment('UNIDAD TEMÁTICA XII.pdf');
-  var fileStream = s3.getObject(params).createReadStream();
-  console.log(fileStream);
-  res.send({"message":"Hello World!"});
-
 });
 
 connection.connect();
