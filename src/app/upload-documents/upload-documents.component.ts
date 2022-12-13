@@ -35,6 +35,8 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   uploadFile(){
+
+    
     // console.log(this.inputFile);
 
     const formData = new FormData();
