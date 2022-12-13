@@ -237,15 +237,25 @@ app.post('/user', async(req,res) => {
 
 app.put('/user', async(req,res) => {
   try{
-    connection.query(`UPDATE usuario SET nombre = "${req.body.nombre}",username = "${req.body.username}",contra = "${req.body.password}";`,
-    (error,results,fields) =>{
+    connection.query(`SELECT * FROM usuario WHERE username="${req.body.username}";`,(error,results,fields) =>{
       if(error){
         console.log(error);
       }else{
         if(results.length > 0){
-          res.json({"response": 500, "result": "the user could not be modified"});
+          res.json({"response":500, "result":"The new username already exists"});
         }else{
-          res.json({"response": 200, "result": "User modified"});
+          connection.query(`UPDATE usuario SET nombre = "${req.body.nombre}",username = "${req.body.username}",contra = "${req.body.password}";`,
+          (error,results,fields) =>{
+            if(error){
+              console.log(error);
+            }else{
+              if(results.length > 0){
+                res.json({"response": 500, "result": "the user could not be modified"});
+              }else{
+                res.json({"response": 200, "result": "User modified"});
+              }
+            }
+          });
         }
       }
     });
