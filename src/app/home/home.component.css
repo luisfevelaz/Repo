@@ -10,6 +10,18 @@
     justify-content: center;
     text-align: center;
 }
+.section2{
+    --opacidad-negro: 0.4;
+    background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("src\assets\img\glassesBookOriginal.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 .banner-text{
     color: white;

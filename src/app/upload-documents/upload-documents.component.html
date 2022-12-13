@@ -18,7 +18,7 @@
                   <form [formGroup]="subir" (ngSubmit)="uploadFile()">
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="nameDocument">Nombre del documento</label>
-                      <input type="text" id="nameDocument" class="form-control" formControlName="nombre"/>
+                      <input type="text" id="nameDocument" class="form-control" required formControlName="nombre"/>
                     </div>
 <!-- 
                     <div class="form-outline mb-2">
@@ -45,7 +45,7 @@
                     </div> -->
                      <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="">Categoria</label>
-                        <select class="form-control btn-dark" formControlName="materia">
+                        <select class="form-control btn-dark" required formControlName="materia">
                             <option selected>Elige una categoria</option>
                             <option value="matematicas">Matematicas</option>
                             <option value="biologia">Biologia</option>
@@ -77,7 +77,7 @@
                       <label class="form-label text-secondary" for="upFile">Subir archivo</label>
                       <div class="input-group mb-3">
                         <div class="custom-file">
-                          <input type="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readFile($event)">
+                          <input type="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required (change)="readFile($event)">
                           <!-- <label class="custom-file-label" style="text-align: start;" for="inputGroupFile01">Elige un archivo</label> -->
                         </div>
                       </div>

@@ -8,6 +8,11 @@
     text-align: center;
 }
 
+.messageStatus{
+    color: #dc3545;
+    font-size: .875em;
+}
+
 .gradient-custom-2 {
     height: fit-content;
 }
@@ -28,3 +33,14 @@
         border-radius: 20px;
     }
 }  
+
+@media (min-height: 724px) {
+    #login-form{
+        height: 100vh;
+    }
+}
+
+/* 
+Maximo width: 767 hasta el minimo posible
+Maximo heigth: 818 hasta 724
+ */

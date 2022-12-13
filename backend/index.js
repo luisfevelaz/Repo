@@ -1,12 +1,12 @@
 //Credenciales para acceder a amazon s3
-const AWS_ACCESS_KEY ='';
-const AWS_SECRET_ACCESS_KEY='';
+const AWS_ACCESS_KEY = 'AKIAXTJR7ARIW7M7ZXUQ';
+const AWS_SECRET_ACCESS_KEY = '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';
 
 
 const fs = require('fs');
 const AWS = require('aws-sdk');
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const multipart = require('connect-multiparty');
 
 var app = express();

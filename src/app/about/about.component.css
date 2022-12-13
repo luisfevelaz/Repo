@@ -1,8 +1,6 @@
 .contab {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-
-
   --opacidad-negro: 0.4;
   background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("src\assets\img\backgroundOrigin.jpg");
   height: fit-content;
@@ -13,6 +11,30 @@
 html {
   box-sizing: border-box;
 }
+
+@media (max-width: 650px) and (min-height: 1745px) {
+  .contab{
+      height: 100vh !important;
+  }
+}
+@media (min-width: 651px) and (min-height: 1138px) {
+  .contab{
+      height: 100vh !important;
+  }
+}
+@media (min-width: 831px) and (max-height: 1100px) {
+  .contab{
+      height: 100vh !important;
+  }
+}
+@media (min-width: 831px) and (min-height: 1100px) {
+  .contab{
+      height: 100vh !important;
+  }
+}
+
+/*831 width start
+hasta 1137 hegth*/
 
 *,
 *:before,

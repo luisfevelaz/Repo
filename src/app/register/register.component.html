@@ -13,31 +13,71 @@
                     <h4 class="mt-1 mb-5 pb-1">¡Registrate!</h4>
                   </div>
                   <!-- Form -->
-                  <form [formGroup]="registro" #userRegistro="ngForm" (ngSubmit)="enviarRegistro(userRegistro.value)">
+                  <form [formGroup]="registro"  #userRegistro="ngForm" class="needs-validation" (ngSubmit)="enviarRegistro(userRegistro.value)" novalidate>
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="user">Nombre de usuario</label>
-                      <input type="text" id="user" class="form-control" formControlName="nombre"/>
+                      <input type="text" id="user" class="form-control" required formControlName="nombre"/>
                     </div>
 
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="email">Correo</label>
-                      <input type="email" id="email" class="form-control" formControlName="email"/>
+                      <input type="email" id="email" class="form-control" required formControlName="email"/>
                     </div>
   
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="password">Contraseña</label>
-                      <input type="password" id="password" class="form-control" formControlName="password"/>
+                      <input type="password" id="password" required class="form-control" formControlName="password"/>
                     </div>
 
                     <div class="form-check mb-4">
-                        <input type="checkbox" class="form-check-input" id="" required>
+                        <input type="checkbox" class="form-check-input" id="conditios" required>
                         <label class="text-secondary" for="conditios">Acepto los terminos y condiciones</label>
                     </div>
   
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Crear cuenta</button>
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" data-toggle="modal" data-target="#staticBackdrop">Crear cuenta</button>
+                      <!-- <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Crear cuenta</button> -->
                     </div>
                   </form>
+                  <!-- Modal 1-->
+                  <div *ngIf="Correcto == true" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">¡Perfil creado con exito!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Ahora puedes iniciar sesion con tu nueva cuenta
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn gradient-custom-2" style="color: white;"  data-dismiss="modal" routerLink="/home">Aceptar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                  <!-- Modal 2-->
+                  <div *ngIf="Correcto == false" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Ingreso de datos incorrectos</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          ¡Intenta de nuevo!
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn gradient-custom-2" style="color: white;"  data-dismiss="modal" >Aceptar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                  
                 </div>
               </div>
               <!-- section 2 text -->

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  Correct: boolean = null;
+  // Incorrect: boolean;
+
   login = new FormGroup({
     email: new FormControl('',Validators.email),
     password: new FormControl('',Validators.minLength(3)),
@@ -17,7 +21,7 @@ export class LoginComponent implements OnInit {
     //falta validator de nombre
   });
   
-  url='http://192.168.100.6:3000/login'
+  url='http://192.168.100.80:3000/login'
   // url='http://192.168.100.80:3000/login'
 
   constructor(private http: HttpClient, private _router: Router) { }
@@ -26,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   enviarLogin(){
-    console.log("Login");
+    // console.log("Login");
     
     let body: any = {
       username: this.login.get("email").value,
@@ -36,14 +40,21 @@ export class LoginComponent implements OnInit {
 
     this.http.post(this.url,body,{responseType: 'text'}).subscribe((result) => {
       console.log(result);
-      let resp = JSON.parse(result);
+      let resp = JSON.parse(result);  
+
+      if(resp.response == 500){
+        this.Correct= false;
+      }
 
       if(resp.response == 200){
+        this.Correct= true;
+        console.log(this.Correct);
         localStorage.clear();
         localStorage.setItem('id',resp.idUser);
         localStorage.setItem('user',resp.username);
         localStorage.setItem('nombre',resp.nombre);
         localStorage.setItem('admin',resp.isAdmin);
+        alert("Datos correctos")
         this._router.navigate(['/home'],resp.idUser);
       }
       

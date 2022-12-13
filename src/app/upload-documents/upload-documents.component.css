@@ -18,6 +18,13 @@
         height: auto;
     }
 }  
+
+@media (min-height: 724px) {
+    #uploadDocuments-form{
+        height: 100vh;
+    }
+}
+
 #uploadDocuments-form{
     background-color: #0D141C;
     /* height: 100vh; */
