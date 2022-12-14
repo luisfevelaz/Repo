@@ -1,5 +1,9 @@
 .fondo{
     background: #0D141C;
+    background-image: url("../../assets/img/glassesBookOriginal.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;	
     color: whitesmoke;
     align-items: center;
     height: 100vh;
