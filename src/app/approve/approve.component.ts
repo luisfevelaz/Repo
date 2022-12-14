@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApproveComponent implements OnInit {
 
-  url='http://192.168.100.80:3000/';
+  url='http://192.168.100.6:3000/';
   items: Array<any>;
   showItems: Boolean = false;
 

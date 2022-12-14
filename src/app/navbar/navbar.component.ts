@@ -35,4 +35,11 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
   }
 
+  readLoggedUser(){
+    if(localStorage.getItem('user')){
+      return true;
+    }
+    return false;
+  }
+
 }
