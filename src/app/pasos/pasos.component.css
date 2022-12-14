@@ -119,3 +119,9 @@
     text-align: center;
     padding-bottom: 1%;
   }
+
+  @media (min-height: 1074px) {
+    .contab{
+        height: 100vh;
+    }
+}

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user',resp.username);
         localStorage.setItem('nombre',resp.nombre);
         localStorage.setItem('admin',resp.isAdmin);
-        alert("Datos correctos")
+        // alert("Datos correctos")
         this._router.navigate(['/home'],resp.idUser);
       }
       
