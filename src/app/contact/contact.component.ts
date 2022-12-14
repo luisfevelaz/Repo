@@ -20,20 +20,29 @@ export class ContactComponent implements OnInit {
     mensaje: new FormControl('',Validators.minLength(3)),
     name: new FormControl(''),
     last: new FormControl(''),
-    email: new FormControl('')
+    email: new FormControl('',Validators.email)
  });
   contactForm() {
     const formData = new FormData();
-    
-    console.log(this.subir.get('mensaje').value);
-    this._MessageService.sendMessage({mensaje: this.subir.get('mensaje').value,name: this.subir.get('name').value,last: this.subir.get('last').value,email: this.subir.get('email').value}).subscribe(() => {
-    })
-    console.log("enviado");
-    Swal.fire(
-      'Contacto',
-      'Mensaje enviado correctamente',
-      'success'
-    )
-    this._router.navigate(['/home']);
+
+    if(this.subir.get("email").value.length > 0 && this.subir.get("mensaje").value.length > 0 && 
+    this.subir.get("last").value.length > 0 && this.subir.get("name").value.length > 0){
+      this._MessageService.sendMessage({mensaje: this.subir.get('mensaje').value,name: this.subir.get('name').value,last: this.subir.get('last').value,email: this.subir.get('email').value}).subscribe(() => {
+      })
+      console.log("enviado");
+      Swal.fire(
+        'Contacto',
+        'Mensaje enviado correctamente',
+        'success'
+      )
+      this._router.navigate(['/home']);
+    }else{
+      Swal.fire(
+        '¡Llenar todos los campos para comunicarte con nosotros!',
+        'Intento fallido',
+        'error'
+      )
     }
+    
+  }
 }

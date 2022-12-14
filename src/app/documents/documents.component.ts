@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DocumentsComponent implements OnInit {
 
-  url='http://192.168.100.6:3000/documento'
+  url='http://192.168.100.80:3000/documento'
   items: Array<any>;
   showItems: Boolean = false;
   categoria: string = "";

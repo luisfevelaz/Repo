@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class EditProfileComponent implements OnInit {
 
-  url='http://192.168.100.6:3000/';
+  url='http://192.168.100.80:3000/';
 
   edit = new FormGroup({
     nombre: new FormControl('',Validators.maxLength(30)),
@@ -44,20 +44,29 @@ export class EditProfileComponent implements OnInit {
       password: this.edit.get("password").value
     };
 
-    this.http.put(this.url+'user',body,{responseType: 'text'}).subscribe((result) => {
-      console.log(result); 
-      let resp = JSON.parse(result);
+
+    if(this.edit.get("nombre").value.length > 0 && this.edit.get("usuario").value.length > 0 && 
+    this.edit.get("password").value.length > 0){
+      this.http.put(this.url+'user',body,{responseType: 'text'}).subscribe((result) => {
+        console.log(result); 
+          localStorage.setItem('user',body.username);
+          localStorage.setItem('nombre',body.nombre);
+          Swal.fire(
+            '¡Cambios guardados!',
+            'Se ha actualizado tu informacion',
+            'success'
+          )
+          this._router.navigateByUrl('/');
+      });
+    }else{
+      Swal.fire(
+        '¡Llenar todos los campos para actualizar tu informacion!',
+        'Intento fallido',
+        'error'
+      )
+    }
 
 
-      console.log(resp.username);
-
-      if(resp.response == 200){
-        localStorage.setItem('user',body.username);
-        localStorage.setItem('nombre',body.nombre);
-      }
-      this._router.navigateByUrl('/');
-      
-    });
     
   }
 

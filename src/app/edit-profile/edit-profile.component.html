@@ -13,7 +13,7 @@
                     <h4 class="mt-1 mb-5 pb-1">Edita tu perfil</h4>
                   </div>
                   <!-- Form -->
-                  <form [formGroup]="edit" class="needs-validation" novalidate>
+                  <form [formGroup]="edit" class="needs-validation" (ngSubmit)="enviarEdit()" novalidate>
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="user">Nuevo nombre de usuario</label>
                       <input type="text" id="user" class="form-control" required formControlName="nombre"/>
@@ -30,10 +30,10 @@
                     </div>
   
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" data-toggle="modal" data-target="#staticBackdrop" >Guardar</button>
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Guardar</button>
                     </div>
 
-                    <!-- Modal -->
+                    <!-- Modal
                      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                       <div class="modal-dialog  modal-dialog-centered">
                         <div class="modal-content">
@@ -52,7 +52,7 @@
                           </div>
                         </div>
                       </div>
-                    </div> 
+                    </div>  -->
 
                   </form>
                 </div>

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('',Validators.minLength(3))
   });
 
-  url='http://192.168.100.6:3000/user'
+  url='http://192.168.100.80:3000/user'
   
   constructor(private http: HttpClient, private _router: Router) { }
 

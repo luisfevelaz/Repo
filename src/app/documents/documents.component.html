@@ -1,11 +1,14 @@
 <app-navbar></app-navbar>
 <div class="fondo">
   
-  <div class="mininav">
-    <h2>Documentos</h2>
-    <div class="form-outline mb-2" style="height: 100%;">
-        <select class="form-control btn-dark h-100" style="height: 100%;" (change)="onChange($event.target.value)">
-            <option selected>Categoria</option>
+  <div class="container mininav p-4">
+    <div class="container">
+      <h2>Documentos</h2>
+    </div>
+    <div class="container">
+      <div class="form-outline">
+          <select class="form-control btn-dark h-100 text-center" style="min-height: 44px;" (change)="onChange($event.target.value)">
+            <option value="" selected>Elige una categoria</option>
             <option value="matematicas">Matematicas</option>
             <option value="biologia">Biologia</option>
             <option value="quimica">Quimica</option>
@@ -13,41 +16,49 @@
             <option value="lenguas">Lenguas</option>
             <option value="ingenieria civil">Ingenieria civil</option>
             <option value="electronica">Electronica</option>
-            <option>Informatica</option>
-            <option>Medicina</option>
-            <option>Deportes</option>
-            <option>Leyes</option>
-            <option>Social</option>
-            <option>Artes</option>
-            <option>Cocina</option>
-            <option>Electricidad</option>
-            <option>Robotica</option>
-            <option>Cultural</option>
-            <option>Historia</option>
-            <option>Diseño</option>
-            <option>Tecnologia</option>
-            <option>Agronomia</option>
-            <option>Veterinaria</option>
-            <option>Otro</option>
-        </select>
+            <option value="informatica">Informatica</option>
+            <option value="medicina">Medicina</option>
+            <option value="deportes">Deportes</option>
+            <option value="leyes">Leyes</option>
+            <option value="social">Social</option>
+            <option value="artes">Artes</option>
+            <option value="cocina">Cocina</option>
+            <option value="electricidad">Electricidad</option>
+            <option value="robotica">Robotica</option>
+            <option value="cultural">Cultural</option>
+            <option value="historia">Historia</option>
+            <option value="diseño">Diseño</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="agronomia">Agronomia</option>
+            <option value="veterinaria">Veterinaria</option>
+            <option value="otro">Otro</option>
+          </select>
+      </div>
     </div>
     
     
   </div>
   <br>
+
   <div *ngIf="showItems" class="docs">
-    <div class="list-group">
-      <div *ngFor="let item of items">
-        <a class="list-group-item-warning list-group-item list-group-item-action" aria-current="true"
-           [routerLink]="['/showpdf', item.id]" *ngIf="checkCategoria(item.materia)">
-          <img src="../../assets/img/file.svg" class="img1" />
-          {{item.nombre}}
-        </a>
+
+    <div class="container">
+      <div class="row">        
+        <div class="col-12 col-lg-3 col-md-4 col-sm-6 mb-3" style="max-height: 69px;" *ngFor="let item of items">
+            <a class="list-group-item-warning list-group-item list-group-item-action " aria-current="true"
+              [routerLink]="['/showpdf', item.id]" *ngIf="checkCategoria(item.materia)">
+              <img src="../../assets/img/file.svg" class="img1" />
+                {{item.nombre}}
+            </a>
+        </div>
       </div>
     </div>
+
     <div *ngIf="!showItems">
-      <p>Holaaa</p>
+      <h3>No hay Documentos disponibles</h3>
     </div>
+
   </div>
+
 </div>
 

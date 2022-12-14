@@ -1,4 +1,4 @@
-<app-nabvar-login></app-nabvar-login>
+<app-navbar></app-navbar>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 <section id="uploadDocuments-form">
@@ -15,7 +15,7 @@
                     <h4 class="mt-1 mb-5 pb-1">¡Haz tu aportacion!</h4>
                   </div>
                   <!-- Form -->
-                  <form [formGroup]="subir" (ngSubmit)="uploadFile()">
+                  <form [formGroup]="subir" (ngSubmit)="uploadFile()" class="needs-validation" novalidate>
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="nameDocument">Nombre del documento</label>
                       <input type="text" id="nameDocument" class="form-control" required formControlName="nombre"/>
@@ -46,7 +46,7 @@
                      <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="">Categoria</label>
                         <select class="form-control btn-dark" required formControlName="materia">
-                            <option selected>Elige una categoria</option>
+                            <option value="otro" selected>Elige una categoria</option>
                             <option value="matematicas">Matematicas</option>
                             <option value="biologia">Biologia</option>
                             <option value="quimica">Quimica</option>
@@ -54,22 +54,22 @@
                             <option value="lenguas">Lenguas</option>
                             <option value="ingenieria civil">Ingenieria civil</option>
                             <option value="electronica">Electronica</option>
-                            <option>Informatica</option>
-                            <option>Medicina</option>
-                            <option>Deportes</option>
-                            <option>Leyes</option>
-                            <option>Social</option>
-                            <option>Artes</option>
-                            <option>Cocina</option>
-                            <option>Electricidad</option>
-                            <option>Robotica</option>
-                            <option>Cultural</option>
-                            <option>Historia</option>
-                            <option>Diseño</option>
-                            <option>Tecnologia</option>
-                            <option>Agronomia</option>
-                            <option>Veterinaria</option>
-                            <option>Otro</option>
+                            <option value="informatica">Informatica</option>
+                            <option value="medicina">Medicina</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="leyes">Leyes</option>
+                            <option value="social">Social</option>
+                            <option value="artes">Artes</option>
+                            <option value="cocina">Cocina</option>
+                            <option value="electricidad">Electricidad</option>
+                            <option value="robotica">Robotica</option>
+                            <option value="cultural">Cultural</option>
+                            <option value="historia">Historia</option>
+                            <option value="diseño">Diseño</option>
+                            <option value="tecnologia">Tecnologia</option>
+                            <option value="agronomia">Agronomia</option>
+                            <option value="veterinaria">Veterinaria</option>
+                            <option value="otro">Otro</option>
                         </select>
                     </div>
 
@@ -77,8 +77,9 @@
                       <label class="form-label text-secondary" for="upFile">Subir archivo</label>
                       <div class="input-group mb-3">
                         <div class="custom-file">
-                          <input type="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required (change)="readFile($event)">
-                          <!-- <label class="custom-file-label" style="text-align: start;" for="inputGroupFile01">Elige un archivo</label> -->
+                          <input type="file" id="inputGroupFile01" style="padding: 3px;" class="form-control" 
+                          aria-describedby="inputGroupFileAddon01" required (change)="readFile($event)"
+                          formControlName="ruta">
                         </div>
                       </div>
                     </div>

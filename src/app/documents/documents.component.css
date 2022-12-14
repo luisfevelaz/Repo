@@ -7,44 +7,60 @@
     color: whitesmoke;
     align-items: center;
     height: 100vh;
-    padding-left: 1%;
-    padding-right: 1%;
     text-align: center;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .docs{
     width: 100%;
     opacity: 0.8;
-    padding-bottom: 2%;
-    max-height: 600px;
 }
 .img1{
-    height: 2%;
-    width: 2%;
+    height: 15%;
+    width: 15%;
 }
 .mininav{
     display: flex;
     justify-content: space-between;
     height: fit-content;
 }
-@media screen and (max-width: 650px) {
-    .docs {
-      width: 100%;
-      padding-left: 0%;
-      padding-right: 0%;
+
+/* @media screen and (max-width: 768px){
+  .img1{
+    height: 5%;
+    width: 5%;
+  }
+} */
+
+  @media screen and (max-width: 768px) {
+    .img1{
+      height: 12%;
+      width: 12%;
     }
     .mininav{
         display: block;
     }
-    .search1{
-        width: 100% !important;
-      }
-    
   }
-  .search1{
+  @media screen and (min-width: 768px) {
+    .docs a{
+      min-height: 70px;
+      max-height: 70px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .img1{
+      height: 5%;
+      width: 5%;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .docs a{
+      min-height: 75px;
+    }
+  }
+  
+  /* .search1{
     width: 25%;
-  }
-  .sele{
-    height: 46.4 px;
-  }
+  } */
+
   /* Libros en un contenedor y darle max height */
