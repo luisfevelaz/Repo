@@ -7,7 +7,7 @@
   text-align: center;
   padding-bottom: 2%;
 }
-#login-form{
+#show-item{
   background: #0D141C;
   color: whitesmoke;
 }
@@ -18,5 +18,11 @@
 @media screen and (max-width: 650px) {
   .pdf {
     width: 100%;
+  }
+}
+
+@media (min-height: 1008px) {
+  #show-item{
+      height: 100vh;
   }
 }

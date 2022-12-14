@@ -1,4 +1,4 @@
-#login-form{
+#contact-form{
     background: #0D141C;
     /* height: 100vh; */
     display: flex;
@@ -17,7 +17,7 @@
     height: fit-content;
 }
 
-#login-form .rigth-img{
+#contact-form .rigth-img{
     --opacidad-negro: 0.4;
     background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url('src\assets\img\blackLamp2original.jpg');
     background-repeat: no-repeat;
@@ -25,11 +25,17 @@
 }
 
 @media (max-width: 991px) {
-    #login-form .rigth-img{
+    #contact-form .rigth-img{
         display: none;
     }
 
-    #login-form .container-form{
+    #contact-form .container-form{
         border-radius: 20px;
     }
 }  
+
+@media (min-height: 1076px) {
+    #contact-form{
+        height: 100vh;
+    }
+}

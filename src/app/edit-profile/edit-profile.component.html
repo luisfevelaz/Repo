@@ -13,7 +13,7 @@
                     <h4 class="mt-1 mb-5 pb-1">Edita tu perfil</h4>
                   </div>
                   <!-- Form -->
-                  <form [formGroup]="edit">
+                  <form [formGroup]="edit" class="needs-validation" novalidate>
                     <div class="form-outline mb-2">
                       <label class="form-label text-secondary" for="user">Nuevo nombre de usuario</label>
                       <input type="text" id="user" class="form-control" required formControlName="nombre"/>

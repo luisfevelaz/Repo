@@ -26,3 +26,9 @@
     text-align: center;
     /* overflow: scroll; */
 }
+
+@media (min-height: 825px) {
+    #edit-profile-form{
+        height: 100vh;
+    }
+}
