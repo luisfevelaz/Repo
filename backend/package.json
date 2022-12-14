@@ -9,12 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "-": "^0.0.1",
     "aws-sdk": "^2.1262.0",
     "body-parser": "^1.20.1",
     "connect-multiparty": "^2.2.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.8.0",
+    "save": "^2.9.0"
   }
 }

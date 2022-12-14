@@ -13,25 +13,25 @@
                     <h4 class="mt-1 mb-2 pb-1">Contactanos</h4>
                   </div>
                   <!-- Form -->
-                  <form class="needs-validation" novalidate>
+                  <form (ngSubmit)="contactForm()" [formGroup]="subir" class="needs-validation" novalidate>
                     <div class="form-outline mb-4">
                         Si tienes alguna queja o sugerencia aqui con todo gusto te podemos atender 
                     </div>
                     <div class="form-outline mb-4">
-                        <label class="form-label text-secondary" for="queja">Comentarios o sugerencias</label>
-                        <textarea id="queja" name="queja" rows="4" cols="50" required class="form-control" formControlName="queja" placeholder="Escribe aqui"></textarea>
+                        <label class="form-label text-secondary" for="mensaje">Comentarios o sugerencias</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" cols="50" required class="form-control" formControlName="mensaje" placeholder="Escribe aqui" ngModel></textarea>
                       </div>
                       <div class="form-outline mb-4">
                         <label class="form-label text-secondary" for="name">Nombre</label>
-                        <input type="text" id="name" class="form-control" required formControlName="name"/>
+                        <input type="text" id="name" class="form-control" required formControlName="name" ngModel/>
                       </div>
                       <div class="form-outline mb-4">
                         <label class="form-label text-secondary" for="last">Apellido</label>
-                        <input type="text" id="last" class="form-control" formControlName="last"/>
+                        <input type="text" id="last" class="form-control" required formControlName="last" ngModel/>
                       </div>
                     <div class="form-outline mb-4">
                       <label class="form-label text-secondary" for="email">Correo</label>
-                      <input type="email" id="email" class="form-control" required formControlName="email"/>
+                      <input type="email" id="email" class="form-control" required formControlName="email" ngModel/>
                     </div>
   
                     <div class="text-center pt-1 mb-5 pb-1">

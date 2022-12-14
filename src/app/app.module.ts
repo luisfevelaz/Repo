@@ -18,7 +18,8 @@ import { ContactComponent } from './contact/contact.component';
 import { ShowpdfComponent } from './showpdf/showpdf.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ApproveComponent } from './approve/approve.component';
-
+import { PasosComponent } from './pasos/pasos.component';
+import { MessageService } from './services/message.service';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ApproveComponent } from './approve/approve.component';
     ContactComponent,
     ShowpdfComponent,
     DocumentsComponent,
-    ApproveComponent
+    ApproveComponent,
+    PasosComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { ApproveComponent } from './approve/approve.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

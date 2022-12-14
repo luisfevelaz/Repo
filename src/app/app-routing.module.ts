@@ -10,6 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ShowpdfComponent } from './showpdf/showpdf.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ApproveComponent } from './approve/approve.component';
+import { PasosComponent } from './pasos/pasos.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'showpdf/:id', component: ShowpdfComponent},
   {path: 'documents', component: DocumentsComponent},
-  {path: 'approve', component: ApproveComponent}
+  {path: 'approve', component: ApproveComponent},
+  {path: 'pasos', component: PasosComponent}
 ];
 
 @NgModule({
