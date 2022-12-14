@@ -8,9 +8,12 @@ const AWS = require('aws-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
 const multipart = require('connect-multiparty');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
+const configMensaje = require('./configMensaje');
 
 var app = express();
-
+app.use(cors())
 var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
@@ -280,6 +283,11 @@ app.get('/docs', async(req,res)=>{
   console.log(fileStream);
   res.send({"message":"Hello World!"});
 
+});
+
+app.post('/formulario', (req, res) => {
+  configMensaje(req.body);
+  res.status(200).send();
 });
 
 connection.connect();

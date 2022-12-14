@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    
 }
 
 .gradient-custom-2 {
@@ -32,4 +33,4 @@
     #login-form .container-form{
         border-radius: 20px;
     }
-}  
+}

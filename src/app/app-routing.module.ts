@@ -9,6 +9,7 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 import { ContactComponent } from './contact/contact.component';
 import { ShowpdfComponent } from './showpdf/showpdf.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { PasosComponent } from './pasos/pasos.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'uploadDocuments', component: UploadDocumentsComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'showpdf/:id', component: ShowpdfComponent},
-  {path: 'documents', component: DocumentsComponent}
+  {path: 'documents', component: DocumentsComponent},
+  {path: 'pasos', component: PasosComponent}
 ];
 
 @NgModule({

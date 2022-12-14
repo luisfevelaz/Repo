@@ -20,6 +20,7 @@
 .mininav{
     display: flex;
     justify-content: space-between;
+    height: fit-content;
 }
 @media screen and (max-width: 650px) {
     .docs {
@@ -27,6 +28,18 @@
       padding-left: 0%;
       padding-right: 0%;
     }
+    .mininav{
+        display: block;
+    }
+    .search1{
+        width: 100% !important;
+      }
     
+  }
+  .search1{
+    width: 25%;
+  }
+  .sele{
+    height: 46.4 px;
   }
   /* Libros en un contenedor y darle max height */
