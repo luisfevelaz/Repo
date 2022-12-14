@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,8 +12,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  Correcto: boolean;
-
   registro = new FormGroup({
     nombre: new FormControl('',Validators.maxLength(30)),
     email: new FormControl('',Validators.email),
@@ -20,14 +20,13 @@ export class RegisterComponent implements OnInit {
 
   url='http://192.168.100.80:3000/user'
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _router: Router) { }
 
   ngOnInit(): void {
   }
   
   enviarRegistro(data:any){
     console.log("entra");
-    console.log(this.Correcto);
     
     let body: any = {
       nombre: this.registro.get("nombre").value,
@@ -40,18 +39,24 @@ export class RegisterComponent implements OnInit {
 
     if(this.registro.get("email").value.length > 0 && this.registro.get("password").value.length > 0 && 
     this.registro.get("nombre").value.length > 0){
-      this.Correcto = true;
-      console.log("entra2");
       this.http.post(this.url,body,{responseType: 'text'}).subscribe((result) => {
-        console.log("entra3");
         console.log(result);
         let resp = JSON.parse(result);
+        Swal.fire(
+          '¡Gracias por registrarte con nosotros!',
+          'Registro exitoso',
+          'success'
+        )
+        this._router.navigate(['/home']);
       });
       
     }else{
-      this.Correcto = false;
+      Swal.fire(
+        'Datos incorrectos',
+        'Intento de registro fallido',
+        'error'
+      )
     }
-    console.log(this.Correcto);    
   }
 
 }

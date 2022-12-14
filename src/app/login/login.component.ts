@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Alert } from 'selenium-webdriver';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -55,6 +57,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('nombre',resp.nombre);
         localStorage.setItem('admin',resp.isAdmin);
         // alert("Datos correctos")
+        Swal.fire(
+          'Gracias por iniciar sesion',
+          '¡Inicio de sesion exitoso!',
+          'success'
+        )
         this._router.navigate(['/home'],resp.idUser);
       }
       

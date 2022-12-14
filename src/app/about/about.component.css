@@ -22,7 +22,7 @@ html {
       height: 100vh !important;
   }
 }
-@media (min-width: 831px) and (max-height: 1100px) {
+/* @media (min-width: 831px) and (max-height: 1100px) {
   .contab{
       height: 100vh !important;
   }
@@ -31,7 +31,7 @@ html {
   .contab{
       height: 100vh !important;
   }
-}
+} */
 
 /*831 width start
 hasta 1137 hegth*/

@@ -27,7 +27,6 @@ export class ContactComponent implements OnInit {
     
     console.log(this.subir.get('mensaje').value);
     this._MessageService.sendMessage({mensaje: this.subir.get('mensaje').value,name: this.subir.get('name').value,last: this.subir.get('last').value,email: this.subir.get('email').value}).subscribe(() => {
-    // // Swal("Formulario de contacto”, “Mensaje enviado correctamente", 'success');
     })
     console.log("enviado");
     Swal.fire(
